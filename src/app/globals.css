@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+:root {
+  --radius: 14px;
+}
+
+::selection {
+  background: rgba(255,255,255,0.2);
+}
