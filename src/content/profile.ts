@@ -1,6 +1,6 @@
 export const profile = {
-  name: "Prabhaw Kumar",
-  title: "DevOps Engineer & Software Engineer",
+  name: "Prabhaw Kr",
+  title: "DevOps Engineer",
   tagline: "Automating infrastructure. Shipping reliable systems.",
   highlights: [
     "AWS",
