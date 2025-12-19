@@ -68,21 +68,28 @@ export default function Hero() {
 
           {/* Image Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative w-64 h-64 md:w-96 md:h-96"
+            className="relative w-80 h-96 md:w-[26rem] md:h-[34rem] flex-shrink-0"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-20" />
-            <div className="relative w-full h-full rounded-3xl overflow-hidden glass p-4 border-white/20 shadow-2xl">
+            {/* Glowing Aura */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-[3rem] blur-3xl" />
+
+            {/* Image Container */}
+            <div className="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[var(--background)]/50">
               <Image
                 src="/hero-avatar.jpg"
                 alt="Developer Avatar"
                 fill
-                className="object-cover rounded-2xl"
+                className="object-cover object-top hover:scale-105 transition-transform duration-700"
                 priority
               />
             </div>
+
+            {/* Decor elements */}
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500 rounded-full blur-2xl opacity-40 mix-blend-screen" />
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-purple-500 rounded-full blur-3xl opacity-30 mix-blend-screen" />
           </motion.div>
         </div>
       </div>

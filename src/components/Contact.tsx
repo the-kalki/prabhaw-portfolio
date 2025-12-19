@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ArrowUpRight, Send } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Send } from "lucide-react";
 import { contact } from "@/content/contact";
 
 export default function Contact() {
@@ -22,7 +23,7 @@ export default function Contact() {
               Get in touch
             </span>
 
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-[var(--foreground)] to-[var(--foreground)]/40">
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
               {contact.heading}
             </h2>
 
@@ -45,10 +46,20 @@ export default function Contact() {
                     key={s.label}
                     href={s.href}
                     target="_blank"
-                    className="p-4 rounded-2xl glass hover:bg-[var(--foreground)]/10 transition-all opacity-50 hover:opacity-100 active:scale-90"
+                    className="p-4 rounded-2xl glass hover:bg-[var(--foreground)]/10 transition-all opacity-50 hover:opacity-100 active:scale-90 flex items-center justify-center"
                     title={s.label}
                   >
-                    <ArrowUpRight size={20} />
+                    {s.icon ? (
+                      <Image
+                        src={s.icon}
+                        alt={s.label}
+                        width={20}
+                        height={20}
+                        className="dark:invert"
+                      />
+                    ) : (
+                      <ArrowUpRight size={20} />
+                    )}
                   </a>
                 ))}
               </div>

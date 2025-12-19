@@ -6,11 +6,13 @@ export const contact = {
   socials: [
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/",
+      href: "https://www.linkedin.com/in/prabhaw-kr",
+      icon: "/linkedin.svg",
     },
     {
       label: "GitHub",
-      href: "https://github.com/",
+      href: "https://github.com/the-kalki",
+      icon: "/github.svg",
     },
   ],
 };
