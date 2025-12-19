@@ -1,89 +1,90 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import Image from "next/image";
+import { useStore } from "@/lib/store";
 
 export default function Hero() {
+  const { setActiveSection, setLocked } = useStore();
+
+  const handleCTA = (sectionId: "projects" | "contact") => {
+    setActiveSection(sectionId);
+    setLocked(true);
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <section className="relative overflow-hidden">
-      {/* Background gradient */}
-<div className="absolute inset-0 bg-gradient-to-b from-[#060B08] via-black to-black" />
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[50%] h-[50%] bg-purple-500/10 blur-[150px] rounded-full" />
+      </div>
 
-{/* Green glow accent */}
-<div className="absolute left-1/2 top-32 -translate-x-1/2 h-[480px] w-[480px] rounded-full bg-emerald-500/15 blur-[140px]" />
-
-{/* Secondary subtle glow */}
-<div className="absolute left-[30%] top-[55%] h-[300px] w-[300px] rounded-full bg-green-400/10 blur-[160px]" />
-
-      <div className="relative mx-auto max-w-7xl px-6 pt-40 pb-32">
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-5xl md:text-7xl font-semibold tracking-tight text-white drop-shadow-[0_0_30px_rgba(16,185,129,0.15)]"
-
-        >
-          DevOps Engineer
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
-          className="mt-6 max-w-xl text-base md:text-lg text-white/60"
-        >
-          Automating infrastructure. Shipping reliable systems.
-        </motion.p>
-
-        {/* Tech stack pills */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-8 flex flex-wrap gap-3"
-        >
-          {[
-            "AWS",
-            "Docker",
-            "Kubernetes",
-            "Terraform",
-            "CI/CD",
-            "Linux",
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-white/10 px-4 py-1.5 text-sm text-white/60 backdrop-blur-sm"
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex-1 text-center md:text-left"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="inline-block px-4 py-1.5 rounded-full glass mb-6 text-xs font-medium tracking-widest uppercase opacity-60"
             >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
+              Available for projects
+            </motion.div>
 
-        {/* CTA buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="mt-12 flex flex-wrap items-center gap-4"
-        >
-          {/* Primary */}
-          <Link
-            href="#projects"
-            className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90"
-          >
-            View Projects
-          </Link>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
+              Frontend <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
+                Architect.
+              </span>
+            </h1>
 
-          {/* Secondary */}
-          <Link
-            href="/resume.pdf"
-            className="inline-flex items-center justify-center rounded-lg border border-white/20 px-6 py-3 text-sm font-medium text-white/80 transition hover:bg-white/5 hover:text-white"
+            <p className="text-lg md:text-xl opacity-60 max-w-xl mb-10 leading-relaxed">
+              Crafting immersive digital experiences with focus on performance, accessibility, and modern aesthetics.
+            </p>
+
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              <button
+                onClick={() => handleCTA("projects")}
+                className="px-8 py-4 rounded-full bg-[var(--foreground)] text-[var(--background)] font-bold hover:opacity-90 transition-all active:scale-95"
+              >
+                View Work
+              </button>
+              <button
+                onClick={() => handleCTA("contact")}
+                className="px-8 py-4 rounded-full glass font-semibold hover:bg-[var(--foreground)]/5 transition-all active:scale-95"
+              >
+                Contact Me
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Image Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative w-64 h-64 md:w-96 md:h-96"
           >
-            Download Resume
-          </Link>
-        </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl blur-2xl opacity-20" />
+            <div className="relative w-full h-full rounded-3xl overflow-hidden glass p-4 border-white/20 shadow-2xl">
+              <Image
+                src="/hero-avatar.jpg"
+                alt="Developer Avatar"
+                fill
+                className="object-cover rounded-2xl"
+                priority
+              />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

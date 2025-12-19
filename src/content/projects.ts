@@ -6,6 +6,7 @@ export const projects = {
       domain: "Insurance / Microservices",
       description:
         "Spring Boot microservice exposing REST APIs for policy management with automated CI/CD and cloud deployment.",
+      image: "/projects/insureme.png",
       highlights: [
         "Spring Boot + REST APIs",
         "Jenkins CI/CD pipeline",
@@ -31,6 +32,7 @@ export const projects = {
       domain: "Banking / Cloud Infrastructure",
       description:
         "End-to-end cloud-native banking backend with automated provisioning, CI/CD, and monitoring.",
+      image: "/projects/financeme.png",
       highlights: [
         "Spring Boot backend with AWS RDS (MySQL)",
         "Infrastructure provisioning using Terraform",
@@ -56,6 +58,7 @@ export const projects = {
       domain: "QA / Automation Testing",
       description:
         "Robust automation testing framework integrated into CI pipelines for continuous quality assurance.",
+      image: "/projects/testifypro.png",
       highlights: [
         "Selenium WebDriver with Java & TestNG",
         "Jenkins integration for automated test execution",

@@ -1,47 +1,73 @@
-import { profile } from "@/content/profile";
+"use client";
 
-export default function Hero() {
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Contact from "@/components/Contact";
+import { useStore } from "@/lib/store";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
+
+export default function Home() {
+  const { activeSection, isLocked } = useStore();
+
+  // Handle body overflow when locked
+  useEffect(() => {
+    if (isLocked) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isLocked]);
+
   return (
-    <section className="min-h-[90vh] flex items-center">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight">
-            {profile.title}
-          </h1>
+    <main className="relative min-h-screen transition-colors duration-500">
+      <AnimatePresence mode="wait">
+        {!isLocked ? (
+          <motion.div
+            key="unlocked"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex flex-col"
+          >
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Contact />
+          </motion.div>
+        ) : (
+          <motion.div
+            key={`locked-${activeSection}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed inset-0 z-10 overflow-y-auto pt-24 pb-12 hide-scrollbar"
+          >
+            <div className="container mx-auto px-6 md:px-12">
+              {activeSection === "about" && <About />}
+              {activeSection === "skills" && <Skills />}
+              {activeSection === "projects" && <Projects />}
+              {activeSection === "contact" && <Contact />}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          <p className="mt-6 text-lg md:text-2xl text-white/70 max-w-2xl">
-            {profile.tagline}
-          </p>
-
-          <ul className="mt-8 flex flex-wrap gap-3">
-            {profile.highlights.map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-white/20 px-4 py-2 text-sm text-white/80"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-12 flex flex-wrap gap-6">
-            <a
-              href={profile.ctas.primary.href}
-              className="rounded-xl bg-white px-7 py-4 text-black font-medium"
-            >
-              {profile.ctas.primary.label}
-            </a>
-
-            <a
-              href={profile.ctas.secondary.href}
-              className="text-white/70 hover:text-white transition"
-            >
-              {profile.ctas.secondary.label}
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+      {/* Universal Background Blur Overlay when locked */}
+      <AnimatePresence>
+        {isLocked && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-0 bg-black/60 backdrop-blur-3xl"
+          />
+        )}
+      </AnimatePresence>
+    </main>
   );
 }
-

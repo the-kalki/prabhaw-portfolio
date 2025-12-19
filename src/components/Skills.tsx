@@ -2,49 +2,58 @@
 
 import { motion } from "framer-motion";
 import { skills } from "@/content/skills";
-import { fadeUp, stagger } from "@/lib/motion";
 
 export default function Skills() {
   return (
-    <section id="skills" className="scroll-mt-24 py-24">
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        className="mx-auto max-w-6xl px-6"
-      >
-        <motion.h2
-          variants={fadeUp}
-          className="text-3xl md:text-4xl font-semibold"
-        >
-          {skills.heading}
-        </motion.h2>
+    <section id="skills" className="py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+          >
+            {skills.heading}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="opacity-40 text-lg"
+          >
+            A collection of tools and technologies I use to bring ideas to life.
+          </motion.p>
+        </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {skills.groups.map((group) => (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {skills.groups.map((group, idx) => (
             <motion.div
               key={group.title}
-              variants={fadeUp}
-              className="rounded-2xl border border-white/10 p-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="glass p-8 rounded-[2rem] hover:bg-[var(--foreground)]/5 transition-all group"
             >
-              <h3 className="text-lg font-medium text-white/90">
+              <h3 className="text-xl font-bold mb-6 opacity-90 group-hover:opacity-100 transition-colors">
                 {group.title}
               </h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <li
+                  <span
                     key={item}
-                    className="rounded-full bg-white/5 px-3 py-1.5 text-sm text-white/80"
+                    className="px-4 py-2 rounded-xl bg-[var(--foreground)]/5 border border-[var(--glass-border)] text-sm opacity-60 hover:opacity-100 hover:bg-[var(--foreground)]/10 transition-all"
                   >
                     {item}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </div>
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

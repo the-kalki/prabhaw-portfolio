@@ -1,67 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, Send } from "lucide-react";
 import { contact } from "@/content/contact";
-import { fadeUp, stagger } from "@/lib/motion";
 
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      className="scroll-mt-24 py-28 border-t border-white/10"
-    >
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-80px" }}
-        className="mx-auto max-w-6xl px-6"
-      >
-        <motion.h2
-          variants={fadeUp}
-          className="text-3xl md:text-4xl font-semibold"
-        >
-          {contact.heading}
-        </motion.h2>
-
-        <motion.p
-          variants={fadeUp}
-          className="mt-4 max-w-2xl text-white/70"
-        >
-          {contact.subheading}
-        </motion.p>
-
-        {/* Email CTA */}
-        <motion.a
-  href={`mailto:${contact.email}`}
-  className="mt-8 inline-flex items-center gap-3 rounded-xl bg-white px-6 py-4 text-black
-             transition hover:scale-[1.02] active:scale-[0.98]
-             focus:outline-none focus:ring-2 focus:ring-white/30"
->
-
-          <Mail size={20} />
-          {contact.email}
-        </motion.a>
-
-        {/* Social links */}
+    <section id="contact" className="py-24 md:py-32">
+      <div className="max-w-4xl mx-auto px-6 md:px-12">
         <motion.div
-          variants={fadeUp}
-          className="mt-10 flex flex-wrap gap-6 text-sm"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="glass p-8 md:p-20 rounded-[3rem] text-center relative overflow-hidden"
         >
-          {contact.socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              className="inline-flex items-center gap-1 text-white/70 hover:text-white"
-            >
-              {s.label}
-              <ArrowUpRight size={14} />
-            </a>
-          ))}
+          {/* Background Glow */}
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-500/10 blur-[100px] rounded-full" />
+
+          <div className="relative z-10">
+            <span className="text-xs font-bold tracking-[0.3em] uppercase opacity-30 mb-8 block">
+              Get in touch
+            </span>
+
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-[var(--foreground)] to-[var(--foreground)]/40">
+              {contact.heading}
+            </h2>
+
+            <p className="text-xl opacity-50 max-w-xl mx-auto mb-12 leading-relaxed font-light">
+              {contact.subheading}
+            </p>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <a
+                href={`mailto:${contact.email}`}
+                className="group relative flex items-center gap-3 px-8 py-4 rounded-2xl bg-[var(--foreground)] text-[var(--background)] font-bold transition-all hover:pr-10 active:scale-95"
+              >
+                <span>Write an email</span>
+                <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+
+              <div className="flex gap-4">
+                {contact.socials.map((s, idx) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    className="p-4 rounded-2xl glass hover:bg-[var(--foreground)]/10 transition-all opacity-50 hover:opacity-100 active:scale-90"
+                    title={s.label}
+                  >
+                    <ArrowUpRight size={20} />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-16 text-xs font-medium opacity-20 uppercase tracking-[0.2em]">
+              {contact.email}
+            </div>
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
