@@ -57,12 +57,13 @@ export default function Hero() {
               >
                 View Work
               </button>
-              <button
-                onClick={() => handleCTA("contact")}
-                className="px-8 py-4 rounded-full glass font-semibold hover:bg-[var(--foreground)]/5 transition-all active:scale-95"
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                className="px-8 py-4 rounded-full glass font-semibold hover:bg-[var(--foreground)]/5 transition-all active:scale-95 flex items-center justify-center gap-2"
               >
-                Contact Me
-              </button>
+                Download Resume
+              </a>
             </div>
           </motion.div>
 

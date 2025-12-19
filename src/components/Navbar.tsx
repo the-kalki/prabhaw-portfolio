@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "About", id: "about" as const },
+  { name: "Skills", id: "skills" as const },
   { name: "Project", id: "projects" as const },
-  { name: "MySpace", id: "myspace" as const, external: true, href: "https://the-kalki.github.io/" },
   { name: "Contact", id: "contact" as const },
+  { name: "MySpace", id: "myspace" as const, external: true, href: "https://the-kalki.github.io/" },
 ];
 
 export default function Navbar() {
