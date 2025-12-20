@@ -5,6 +5,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import GlowingWiresBackground from "@/components/GlowingWiresBackground";
 import { useStore } from "@/lib/store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
@@ -107,6 +108,10 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
+
+      {/* Glowing Wires Background Effect - above blur overlay */}
+      <GlowingWiresBackground intensity={shouldShowLocked ? 0.4 : 0.7} />
     </main>
   );
 }
+
