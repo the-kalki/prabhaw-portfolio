@@ -17,5 +17,9 @@ export const skills = {
       title: "Observability",
       items: ["Prometheus", "Grafana"],
     },
+    {
+      title: "Version Control",
+      items: ["Git", "GitHub", "GitLab", "VS Code"],
+    },
   ],
 };

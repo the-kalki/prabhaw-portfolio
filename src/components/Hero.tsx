@@ -40,14 +40,14 @@ export default function Hero() {
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
-              Frontend <br />
+              DevOps <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-                Architect.
+                Engineer.
               </span>
             </h1>
 
             <p className="text-lg md:text-xl opacity-60 max-w-xl mb-10 leading-relaxed">
-              Crafting immersive digital experiences with focus on performance, accessibility, and modern aesthetics.
+              Orchestrating resilient cloud infrastructure with a focus on automation, scalability, and operational excellence.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">

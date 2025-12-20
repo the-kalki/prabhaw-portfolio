@@ -70,5 +70,29 @@ export const projects = {
         github: "#",
       },
     },
+    {
+      title: "Voice-based Personality Prediction Test",
+      domain: "AI / Web Development / Behavioral Analysis",
+      description:
+        "An AI-powered personality assessment platform that uses voice recognition and Myers-Briggs (MBTI) logic to predict user personality traits with high precision.",
+      image: "/projects/personality.png", // Aap apna image path yahan de sakte hain
+      highlights: [
+        "Integrated Voice Recognition API for hands-free user input",
+        "Implemented Myers-Briggs Type Indicator (MBTI) logic engine",
+        "Achieved 95% result accuracy across 1,000+ experimental runs",
+        "Full-stack development with MongoDB for secure user data persistence",
+        "Optimized frontend for real-time speech-to-text processing",
+      ],
+      tech: [
+        "JavaScript (ES6+)",
+        "HTML5/CSS3",
+        "MongoDB",
+        "Web Speech API",
+        "Node.js", // Assuming Node for MongoDB connectivity
+      ],
+      links: {
+        github: "#", // Add your repo link here
+      },
+    },
   ],
 };

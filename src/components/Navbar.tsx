@@ -40,10 +40,10 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 z-[100] w-full px-6 py-4 md:px-12 md:py-8 transition-colors duration-300">
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
+    <header className="fixed top-4 left-1/2 z-[100] -translate-x-1/2 w-[calc(100%-2rem)] max-w-4xl px-6 py-3 transition-colors duration-300 rounded-3xl">
+      <div className="mx-auto flex h-full items-center justify-between">
         {/* Navbar background */}
-        <div className="absolute inset-0 bg-[var(--background)]/80 backdrop-blur-md -z-10 transition-colors duration-300 border-b border-[var(--glass-border)]" />
+        <div className="absolute inset-0 bg-[var(--background)]/80 backdrop-blur-md -z-10 transition-colors duration-300 border border-[var(--glass-border)] rounded-3xl shadow-lg" />
 
         {/* Left: Logo */}
         <button
@@ -53,7 +53,7 @@ export default function Navbar() {
           <div className="relative h-8 w-8 overflow-hidden rounded-full border border-[var(--glass-border)]">
             <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
           </div>
-          <span className="text-xl font-bold tracking-tighter">dev</span>
+          <span className="text-xl font-bold tracking-tighter">Rudra</span>
         </button>
 
         {/* Right: Menu button container */}

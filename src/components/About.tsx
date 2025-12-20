@@ -38,11 +38,11 @@ export default function About() {
 
           <div className="mt-12 pt-12 border-t border-[var(--glass-border)] grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <div className="text-3xl font-bold mb-1">5+</div>
+              <div className="text-3xl font-bold mb-1">1+</div>
               <div className="text-xs opacity-40 uppercase tracking-widest">Experience</div>
             </div>
             <div>
-              <div className="text-3xl font-bold mb-1">50+</div>
+              <div className="text-3xl font-bold mb-1">7+</div>
               <div className="text-xs opacity-40 uppercase tracking-widest">Projects</div>
             </div>
             <div>
