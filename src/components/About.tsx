@@ -17,7 +17,7 @@ export default function About() {
           {/* Subtle accent */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-[80px] -mr-32 -mt-32" />
 
-          <span className="text-xs font-bold tracking-[0.2em] uppercase text-blue-400 mb-6 block">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase text-blue-500 dark:text-blue-400 mb-6 block">
             The Story
           </span>
 

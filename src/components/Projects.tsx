@@ -32,7 +32,7 @@ export default function Projects() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="px-6 py-3 rounded-full glass text-sm font-medium opacity-60"
+            className="px-6 py-3 rounded-full glass text-sm font-medium opacity-60 w-fit"
           >
             {projects.items.length} Projects Total
           </motion.div>

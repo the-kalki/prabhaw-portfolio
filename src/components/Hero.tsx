@@ -42,7 +42,7 @@ export default function Hero() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
               Prabhaw Kumar<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-              DevOps Engineer.
+                DevOps Engineer.
               </span>
             </h1>
 
@@ -84,6 +84,7 @@ export default function Hero() {
                 alt="Developer Avatar"
                 fill
                 className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 320px, 416px"
                 priority
               />
             </div>

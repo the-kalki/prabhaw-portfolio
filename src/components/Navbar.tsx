@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,25 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { setActiveSection, setLocked, reset } = useStore();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   const handleLinkClick = (link: typeof navLinks[0]) => {
     if (link.external) {
@@ -57,7 +76,7 @@ export default function Navbar() {
         </button>
 
         {/* Right: Menu button container */}
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
           <button
             onClick={() => setOpen((prev) => !prev)}
             className="text-sm font-medium hover:opacity-70 transition flex items-center gap-1"

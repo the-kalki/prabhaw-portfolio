@@ -2,7 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmoothScroll from "@/components/SmoothScroll";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
   title: "Prabhaw | DevOps Engineer & Frontend Architect",
@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
