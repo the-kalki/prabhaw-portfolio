@@ -4,13 +4,13 @@ import { persist } from 'zustand/middleware';
 type Section = 'home' | 'about' | 'skills' | 'projects' | 'contact' | 'myspace';
 
 interface AppState {
-    activeSection: Section;
-    isLocked: boolean;
-    theme: 'dark' | 'light';
-    setActiveSection: (section: Section) => void;
-    setLocked: (locked: boolean) => void;
-    toggleTheme: () => void;
-    reset: () => void;
+  activeSection: Section;
+  isLocked: boolean;
+  theme: 'dark' | 'light';
+  setActiveSection: (section: Section) => void;
+  setLocked: (locked: boolean) => void;
+  toggleTheme: () => void;
+  reset: () => void;
 }
 
 export const useStore = create<AppState>()(
@@ -26,7 +26,11 @@ export const useStore = create<AppState>()(
     }),
     {
       name: 'portfolio-storage',
-      partialize: (state) => ({ theme: state.theme }), // Only persist theme
+      partialize: (state) => ({
+        theme: state.theme,
+        activeSection: state.activeSection,
+        isLocked: state.isLocked
+      }),
     }
   )
 );

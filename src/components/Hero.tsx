@@ -10,7 +10,6 @@ export default function Hero() {
   const handleCTA = (sectionId: "projects" | "contact") => {
     setActiveSection(sectionId);
     setLocked(true);
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -83,7 +82,7 @@ export default function Hero() {
                 src="/hero-avatar.jpg"
                 alt="Developer Avatar"
                 fill
-                className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                className="object-cover object-top hover:scale-105 transition-transform duration-700 will-change-transform"
                 sizes="(max-width: 768px) 320px, 416px"
                 priority
               />

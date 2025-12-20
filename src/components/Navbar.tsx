@@ -46,11 +46,6 @@ export default function Navbar() {
     setActiveSection(link.id);
     setLocked(true);
     setOpen(false);
-
-    const element = document.getElementById(link.id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   const handleLogoClick = () => {
