@@ -10,7 +10,7 @@ const navLinks = [
   { name: "Skills", id: "skills" as const },
   { name: "Project", id: "projects" as const },
   { name: "Contact", id: "contact" as const },
-  { name: "MySpace", id: "myspace" as const, external: true, href: "https://the-kalki.github.io/" },
+  { name: "MySpace", id: "myspace" as const, external: true, href: "https://myspace-nine-mu.vercel.app/" },
 ];
 
 export default function Navbar() {
