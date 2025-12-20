@@ -5,7 +5,7 @@ import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
-import GlowingWiresBackground from "@/components/GlowingWiresBackground";
+import NeonGlowBackground from "@/components/NeonGlowBackground";
 import { useStore } from "@/lib/store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
@@ -14,11 +14,16 @@ import Lenis from "lenis";
 export default function Home() {
   const { activeSection, isLocked } = useStore();
   const [isMounted, setIsMounted] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  // Wait for hydration to complete
   useEffect(() => {
     setIsMounted(true);
+    // Small delay to ensure Zustand store is fully hydrated from localStorage
+    const timer = setTimeout(() => setIsHydrated(true), 50);
+    return () => clearTimeout(timer);
   }, []);
 
   // Handle body overflow and scoped smooth scroll when locked
@@ -58,10 +63,22 @@ export default function Home() {
     };
   }, [isLocked, isMounted]);
 
-  const shouldShowLocked = isMounted && isLocked;
+  const shouldShowLocked = isMounted && isHydrated && isLocked;
+
+  // Don't render section content until hydrated to prevent flash
+  if (!isHydrated) {
+    return (
+      <main className="relative min-h-screen transition-colors duration-500">
+        <NeonGlowBackground />
+      </main>
+    );
+  }
 
   return (
     <main className="relative min-h-screen transition-colors duration-500">
+      {/* Neon Glow Background - lightweight CSS-only effect */}
+      <NeonGlowBackground />
+
       <AnimatePresence mode="wait">
         {!shouldShowLocked ? (
           <motion.div
@@ -108,9 +125,6 @@ export default function Home() {
           />
         )}
       </AnimatePresence>
-
-      {/* Glowing Wires Background Effect - above blur overlay */}
-      <GlowingWiresBackground intensity={shouldShowLocked ? 0.4 : 0.7} />
     </main>
   );
 }

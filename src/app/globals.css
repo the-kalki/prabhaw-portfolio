@@ -44,4 +44,24 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* Neon glow pulse animations - GPU accelerated */
+  .animate-pulse-slow {
+    animation: neon-pulse 8s ease-in-out infinite;
+  }
+
+  .animate-pulse-slower {
+    animation: neon-pulse 12s ease-in-out infinite;
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.05);
+  }
 }
