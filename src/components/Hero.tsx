@@ -145,7 +145,7 @@ export default function Hero() {
               {/* Avatar Image - No border, clean edges */}
               <div className="relative w-full h-full">
                 <Image
-                  src="/hero-avatar.jpg"
+                  src="/hero-avatar.png"
                   alt="Developer Avatar"
                   fill
                   className="object-cover object-top rounded-[2rem] shadow-2xl"
