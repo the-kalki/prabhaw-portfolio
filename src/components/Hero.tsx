@@ -3,9 +3,42 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useStore } from "@/lib/store";
+import { useState, useEffect } from "react";
+import { Download } from "lucide-react";
+
+const roles = ["DevOps Engineer.", "Cloud Architect.", "Frontend Dev."];
 
 export default function Hero() {
   const { setActiveSection, setLocked } = useStore();
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayText.length < currentRole.length) {
+          setDisplayText(currentRole.slice(0, displayText.length + 1));
+        } else {
+          // Pause before deleting
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        if (displayText.length > 0) {
+          setDisplayText(displayText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, roleIndex]);
 
   const handleCTA = (sectionId: "projects" | "contact") => {
     setActiveSection(sectionId);
@@ -41,7 +74,8 @@ export default function Hero() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
               Prabhaw Kumar<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
-                DevOps Engineer.
+                {displayText}
+                <span className="animate-pulse text-blue-400">|</span>
               </span>
             </h1>
 
@@ -61,36 +95,102 @@ export default function Hero() {
                 target="_blank"
                 className="px-8 py-4 rounded-full glass font-semibold hover:bg-[var(--foreground)]/5 transition-all active:scale-95 flex items-center justify-center gap-2"
               >
+                <Download size={18} />
                 Download Resume
               </a>
             </div>
           </motion.div>
 
-          {/* Image Container */}
+          {/* Floating 3D Avatar */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="relative w-80 h-96 md:w-[26rem] md:h-[34rem] flex-shrink-0"
+            initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              rotateY: 0,
+            }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="relative w-72 h-80 md:w-[24rem] md:h-[30rem] flex-shrink-0"
+            style={{ perspective: "1000px" }}
           >
-            {/* Glowing Aura */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-blue-600/30 to-purple-600/30 rounded-[3rem] blur-3xl" />
+            {/* Soft glow behind avatar */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-blue-500/40 via-purple-500/30 to-emerald-500/20 blur-[80px] rounded-full"
+              animate={{
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.7, 0.5],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
 
-            {/* Image Container */}
-            <div className="relative w-full h-full rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[var(--background)]/50">
-              <Image
-                src="/hero-avatar.jpg"
-                alt="Developer Avatar"
-                fill
-                className="object-cover object-top hover:scale-105 transition-transform duration-700 will-change-transform"
-                sizes="(max-width: 768px) 320px, 416px"
-                priority
+            {/* Floating animation wrapper */}
+            <motion.div
+              className="relative w-full h-full"
+              animate={{
+                y: [0, -15, 0],
+                rotateX: [0, 2, 0],
+                rotateY: [-3, 3, -3],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              {/* Avatar Image - No border, clean edges */}
+              <div className="relative w-full h-full">
+                <Image
+                  src="/hero-avatar.jpg"
+                  alt="Developer Avatar"
+                  fill
+                  className="object-cover object-top rounded-[2rem] shadow-2xl"
+                  sizes="(max-width: 768px) 288px, 384px"
+                  priority
+                  style={{
+                    filter: "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.3))",
+                  }}
+                />
+              </div>
+
+              {/* Subtle 3D depth layers */}
+              <div
+                className="absolute inset-0 rounded-[2rem] bg-gradient-to-t from-black/20 to-transparent pointer-events-none"
+                style={{ transform: "translateZ(-20px)" }}
               />
-            </div>
+            </motion.div>
 
-            {/* Decor elements */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500 rounded-full blur-2xl opacity-40 mix-blend-screen" />
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-purple-500 rounded-full blur-3xl opacity-30 mix-blend-screen" />
+            {/* Floating particles/orbs */}
+            <motion.div
+              className="absolute -top-4 -right-4 w-6 h-6 rounded-full bg-blue-400/60 blur-sm"
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute -bottom-6 -left-6 w-8 h-8 rounded-full bg-purple-400/50 blur-sm"
+              animate={{
+                y: [0, 15, 0],
+                x: [0, -10, 0],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            />
+            <motion.div
+              className="absolute top-1/2 -right-8 w-4 h-4 rounded-full bg-emerald-400/40 blur-sm"
+              animate={{
+                y: [0, -10, 0],
+                opacity: [0.4, 0.7, 0.4],
+              }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            />
           </motion.div>
         </div>
       </div>

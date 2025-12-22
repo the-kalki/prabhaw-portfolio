@@ -15,9 +15,36 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
   const { setActiveSection, setLocked, reset } = useStore();
   const menuRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
+  // Handle scroll direction detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDiff = currentScrollY - lastScrollY.current;
+
+      // Only trigger hide/show if scrolled more than threshold (prevents jitter)
+      if (Math.abs(scrollDiff) > 10) {
+        if (scrollDiff > 0 && currentScrollY > 100) {
+          // Scrolling down & past initial area
+          setVisible(false);
+          setOpen(false); // Close menu when hiding
+        } else {
+          // Scrolling up
+          setVisible(true);
+        }
+        lastScrollY.current = currentScrollY;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Handle click outside for menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -54,7 +81,12 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-4 left-1/2 z-[100] -translate-x-1/2 w-[calc(100%-2rem)] max-w-4xl px-6 py-3 transition-colors duration-300 rounded-3xl">
+    <header
+      className={cn(
+        "fixed top-4 left-1/2 z-[100] -translate-x-1/2 w-[calc(100%-2rem)] max-w-4xl px-6 py-3 rounded-3xl transition-all duration-300 ease-in-out",
+        visible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+      )}
+    >
       <div className="mx-auto flex h-full items-center justify-between">
         {/* Navbar background */}
         <div className="absolute inset-0 bg-[var(--background)]/80 backdrop-blur-md -z-10 transition-colors duration-300 border border-[var(--glass-border)] rounded-3xl shadow-lg" />
@@ -67,7 +99,7 @@ export default function Navbar() {
           <div className="relative h-8 w-8 overflow-hidden rounded-full border border-[var(--glass-border)]">
             <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
           </div>
-          <span className="text-xl font-bold tracking-tighter">Rudra</span>
+          <span className="text-xl font-bold tracking-tighter">kalki</span>
         </button>
 
         {/* Right: Menu button container */}

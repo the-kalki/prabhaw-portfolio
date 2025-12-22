@@ -9,7 +9,6 @@ import NeonGlowBackground from "@/components/NeonGlowBackground";
 import { useStore } from "@/lib/store";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
-import Lenis from "lenis";
 
 export default function Home() {
   const { activeSection, isLocked } = useStore();
@@ -26,41 +25,13 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle body overflow and scoped smooth scroll when locked
+  // Handle body overflow when locked
   useEffect(() => {
-    let lenis: Lenis | null = null;
-
     if (isMounted && isLocked) {
       document.body.style.overflow = "hidden";
-
-      // Initialize scoped Lenis for the locked container
-      if (containerRef.current && contentRef.current) {
-        lenis = new Lenis({
-          wrapper: containerRef.current,
-          content: contentRef.current, // Target the inner content div
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          orientation: "vertical",
-          gestureOrientation: "vertical",
-          smoothWheel: true,
-          wheelMultiplier: 1,
-          touchMultiplier: 2,
-        });
-
-        function raf(time: number) {
-          lenis?.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-      }
-
     } else {
       document.body.style.overflow = "auto";
     }
-
-    return () => {
-      lenis?.destroy();
-    };
   }, [isLocked, isMounted]);
 
   const shouldShowLocked = isMounted && isHydrated && isLocked;
@@ -98,10 +69,15 @@ export default function Home() {
           <motion.div
             key={`locked-${activeSection}`}
             ref={containerRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -30, scale: 0.98 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 25,
+              opacity: { duration: 0.3 }
+            }}
             className="fixed inset-0 z-10 overflow-y-auto pt-24 pb-12 hide-scrollbar"
           >
             <div ref={contentRef} className="container mx-auto px-6 md:px-12">

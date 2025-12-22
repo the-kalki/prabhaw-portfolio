@@ -2,6 +2,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeToggle from "@/components/ThemeToggle";
 import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
+import SoundToggle from "@/components/SoundToggle";
+import CustomCursor from "@/components/CustomCursor";
 import type { Metadata, Viewport } from "next";
 
 export const metadata: Metadata = {
@@ -44,11 +47,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased transition-colors duration-300">
+      <body className="antialiased transition-colors duration-300 cursor-none">
+        <CustomCursor />
         <SmoothScroll />
+        <ScrollProgress />
         <Navbar />
         {children}
         <ThemeToggle />
+        <SoundToggle />
       </body>
     </html>
   );

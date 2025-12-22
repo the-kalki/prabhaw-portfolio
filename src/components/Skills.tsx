@@ -2,6 +2,41 @@
 
 import { motion } from "framer-motion";
 import { skills } from "@/content/skills";
+import {
+  SiAmazonwebservices, SiDocker, SiKubernetes, SiJenkins, SiTerraform, SiAnsible,
+  SiJavascript, SiPython, SiCplusplus, SiMysql,
+  SiSelenium, SiLinux,
+  SiPrometheus, SiGrafana,
+  SiGit, SiGithub, SiGitlab
+} from "react-icons/si";
+import { FaJava, FaWindows } from "react-icons/fa";
+import { VscVscode } from "react-icons/vsc";
+import { IconType } from "react-icons";
+
+// Icon mapping for each skill
+const skillIcons: Record<string, IconType> = {
+  "AWS": SiAmazonwebservices,
+  "Docker": SiDocker,
+  "Kubernetes": SiKubernetes,
+  "Jenkins": SiJenkins,
+  "Terraform": SiTerraform,
+  "Ansible": SiAnsible,
+  "Java": FaJava,
+  "Python": SiPython,
+  "C++": SiCplusplus,
+  "JavaScript": SiJavascript,
+  "SQL": SiMysql,
+  "Selenium": SiSelenium,
+  "TestNG": SiJavascript, // Using JS icon as fallback
+  "Linux (Ubuntu)": SiLinux,
+  "Windows": FaWindows,
+  "Prometheus": SiPrometheus,
+  "Grafana": SiGrafana,
+  "Git": SiGit,
+  "GitHub": SiGithub,
+  "GitLab": SiGitlab,
+  "VS Code": VscVscode,
+};
 
 export default function Skills() {
   return (
@@ -41,14 +76,18 @@ export default function Skills() {
                 {group.title}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-4 py-2 rounded-xl bg-[var(--foreground)]/5 border border-[var(--glass-border)] text-sm opacity-60 hover:opacity-100 hover:bg-[var(--foreground)]/10 transition-all"
-                  >
-                    {item}
-                  </span>
-                ))}
+                {group.items.map((item) => {
+                  const Icon = skillIcons[item];
+                  return (
+                    <span
+                      key={item}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--foreground)]/5 border border-[var(--glass-border)] text-sm opacity-60 hover:opacity-100 hover:bg-[var(--foreground)]/10 transition-all"
+                    >
+                      {Icon && <Icon className="w-4 h-4" />}
+                      {item}
+                    </span>
+                  );
+                })}
               </div>
             </motion.div>
           ))}

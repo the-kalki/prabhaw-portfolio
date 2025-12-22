@@ -1,9 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { ArrowUpRight, Send } from "lucide-react";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { contact } from "@/content/contact";
+import { IconType } from "react-icons";
+
+// Icon mapping for socials
+const socialIcons: Record<string, IconType> = {
+  "LinkedIn": FaLinkedinIn,
+  "GitHub": FaGithub,
+};
 
 export default function Contact() {
   return (
@@ -46,20 +53,16 @@ export default function Contact() {
                     key={s.label}
                     href={s.href}
                     target="_blank"
-                    className="p-4 rounded-2xl glass hover:bg-[var(--foreground)]/10 transition-all opacity-50 hover:opacity-100 active:scale-90 flex items-center justify-center"
-                    title={s.label}
+                    className="group relative p-4 rounded-2xl glass hover:bg-[var(--foreground)]/10 transition-all opacity-50 hover:opacity-100 active:scale-90 flex items-center justify-center"
                   >
-                    {s.icon ? (
-                      <Image
-                        src={s.icon}
-                        alt={s.label}
-                        width={20}
-                        height={20}
-                        className="dark:invert"
-                      />
-                    ) : (
-                      <ArrowUpRight size={20} />
-                    )}
+                    {/* Tooltip */}
+                    <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg bg-[var(--foreground)] text-[var(--background)] text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                      {s.label}
+                    </span>
+                    {(() => {
+                      const Icon = socialIcons[s.label];
+                      return Icon ? <Icon size={20} /> : <ArrowUpRight size={20} />;
+                    })()}
                   </a>
                 ))}
               </div>
@@ -67,6 +70,13 @@ export default function Contact() {
 
             <div className="mt-16 text-xs font-medium opacity-20 uppercase tracking-[0.2em]">
               {contact.email}
+            </div>
+
+            {/* Minimal Footer */}
+            <div className="mt-12 pt-8 border-t border-[var(--foreground)]/5">
+              <p className="text-xs opacity-30">
+                © {new Date().getFullYear()} Rudra. Crafted with Intelligence.
+              </p>
             </div>
           </div>
         </motion.div>

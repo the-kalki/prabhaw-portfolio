@@ -2,32 +2,6 @@ export const projects = {
   heading: "Projects",
   items: [
     {
-      title: "InsureMe — Insurance Microservices Platform",
-      domain: "Insurance / Microservices",
-      description:
-        "Spring Boot microservice exposing REST APIs for policy management with automated CI/CD and cloud deployment.",
-      image: "/projects/insureme.png",
-      highlights: [
-        "Spring Boot + REST APIs",
-        "Jenkins CI/CD pipeline",
-        "Dockerized deployment on AWS EC2",
-        "Ansible-based configuration management",
-        "Automated Selenium post-deployment testing",
-      ],
-      tech: [
-        "Java",
-        "Spring Boot",
-        "Docker",
-        "Jenkins",
-        "AWS EC2",
-        "Ansible",
-        "Selenium",
-      ],
-      links: {
-        github: "#",
-      },
-    },
-    {
       title: "FinanceMe — Cloud-Native Banking System",
       domain: "Banking / Cloud Infrastructure",
       description:
@@ -66,6 +40,32 @@ export const projects = {
         "Defect tracking with Jira",
       ],
       tech: ["Java", "Selenium", "TestNG", "Jenkins", "Jira"],
+      links: {
+        github: "#",
+      },
+    },
+    {
+      title: "InsureMe — Insurance Microservices Platform",
+      domain: "Insurance / Microservices",
+      description:
+        "Spring Boot microservice exposing REST APIs for policy management with automated CI/CD and cloud deployment.",
+      image: "/projects/insureme.png",
+      highlights: [
+        "Spring Boot + REST APIs",
+        "Jenkins CI/CD pipeline",
+        "Dockerized deployment on AWS EC2",
+        "Ansible-based configuration management",
+        "Automated Selenium post-deployment testing",
+      ],
+      tech: [
+        "Java",
+        "Spring Boot",
+        "Docker",
+        "Jenkins",
+        "AWS EC2",
+        "Ansible",
+        "Selenium",
+      ],
       links: {
         github: "#",
       },
