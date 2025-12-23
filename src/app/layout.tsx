@@ -2,7 +2,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
-import SoundToggle from "@/components/SoundToggle";
 import CustomCursor from "@/components/CustomCursor";
 import type { Metadata, Viewport } from "next";
 
@@ -52,7 +51,6 @@ export default function RootLayout({
         <ScrollProgress />
         <Navbar />
         {children}
-        <SoundToggle />
       </body>
     </html>
   );
