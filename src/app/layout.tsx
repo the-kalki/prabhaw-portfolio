@@ -1,6 +1,5 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import ThemeToggle from "@/components/ThemeToggle";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import SoundToggle from "@/components/SoundToggle";
@@ -53,7 +52,6 @@ export default function RootLayout({
         <ScrollProgress />
         <Navbar />
         {children}
-        <ThemeToggle />
         <SoundToggle />
       </body>
     </html>

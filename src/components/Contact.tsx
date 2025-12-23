@@ -75,7 +75,7 @@ export default function Contact() {
             {/* Minimal Footer */}
             <div className="mt-12 pt-8 border-t border-[var(--foreground)]/5">
               <p className="text-xs opacity-30">
-                © {new Date().getFullYear()} Rudra. Crafted with Intelligence.
+                © {new Date().getFullYear()} kalki. Crafted with Intelligence.
               </p>
             </div>
           </div>

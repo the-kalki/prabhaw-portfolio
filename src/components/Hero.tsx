@@ -6,7 +6,7 @@ import { useStore } from "@/lib/store";
 import { useState, useEffect } from "react";
 import { Download } from "lucide-react";
 
-const roles = ["DevOps Engineer.", "Cloud Architect.", "Frontend Dev."];
+const roles = ["DevOps Eng.", "Cloud Architect.", "Frontend Dev."];
 
 export default function Hero() {
   const { setActiveSection, setLocked } = useStore();
@@ -145,7 +145,7 @@ export default function Hero() {
               {/* Avatar Image - Blended edges */}
               <div className="relative w-full h-full">
                 <Image
-                  src="/hero-avatar.png"
+                  src="/hero-avatar.jpg"
                   alt="Developer Avatar"
                   fill
                   className="object-cover object-top rounded-[2rem] shadow-2xl"

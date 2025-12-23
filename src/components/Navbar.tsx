@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { Sun, Moon } from "lucide-react";
 
 const navLinks = [
   { name: "About", id: "about" as const },
@@ -16,7 +17,7 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [visible, setVisible] = useState(true);
-  const { setActiveSection, setLocked, reset } = useStore();
+  const { setActiveSection, setLocked, reset, theme, toggleTheme } = useStore();
   const menuRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
 
@@ -43,6 +44,11 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Update theme data attribute when theme changes
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+  }, [theme]);
 
   // Handle click outside for menu
   useEffect(() => {
@@ -102,40 +108,66 @@ export default function Navbar() {
           <span className="text-xl font-bold tracking-tighter">kalki</span>
         </button>
 
-        {/* Right: Menu button container */}
-        <div className="relative" ref={menuRef}>
+        {/* Right: Actions */}
+        <div className="flex items-center gap-4">
+          {/* Theme Toggle */}
           <button
-            onClick={() => setOpen((prev) => !prev)}
-            className="text-sm font-medium hover:opacity-70 transition flex items-center gap-1"
+            onClick={toggleTheme}
+            className="hover:opacity-70 transition-opacity p-1"
+            aria-label="Toggle theme"
           >
-            Menu
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={theme}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5 text-yellow-400" />
+                ) : (
+                  <Moon className="h-5 w-5 text-slate-800 dark:text-slate-200" />
+                )}
+              </motion.div>
+            </AnimatePresence>
           </button>
 
-          {/* Dropdown links */}
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute right-0 top-full mt-4 w-32 overflow-hidden rounded-xl border border-[var(--glass-border)] bg-[var(--background)]/90 backdrop-blur-xl shadow-2xl"
-              >
-                <ul className="flex flex-col p-1">
-                  {navLinks.map((link) => (
-                    <li key={link.name}>
-                      <button
-                        onClick={() => handleLinkClick(link)}
-                        className="w-full text-left px-4 py-2.5 text-xs font-medium opacity-70 hover:bg-[var(--foreground)]/5 hover:opacity-100 transition-all rounded-lg"
-                      >
-                        {link.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Menu button container */}
+          <div className="relative" ref={menuRef}>
+            <button
+              onClick={() => setOpen((prev) => !prev)}
+              className="text-sm font-medium hover:opacity-70 transition flex items-center gap-1"
+            >
+              Menu
+            </button>
+
+            {/* Dropdown links */}
+            <AnimatePresence>
+              {open && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute right-0 top-full mt-4 w-32 overflow-hidden rounded-xl border border-[var(--glass-border)] bg-[var(--background)]/90 backdrop-blur-xl shadow-2xl"
+                >
+                  <ul className="flex flex-col p-1">
+                    {navLinks.map((link) => (
+                      <li key={link.name}>
+                        <button
+                          onClick={() => handleLinkClick(link)}
+                          className="w-full text-left px-4 py-2.5 text-xs font-medium opacity-70 hover:bg-[var(--foreground)]/5 hover:opacity-100 transition-all rounded-lg"
+                        >
+                          {link.name}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </header>
