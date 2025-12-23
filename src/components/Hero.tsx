@@ -110,7 +110,7 @@ export default function Hero() {
               rotateY: 0,
             }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative w-72 h-80 md:w-[24rem] md:h-[30rem] flex-shrink-0"
+            className="relative w-72 h-[28rem] md:w-[24rem] md:h-[38rem] flex-shrink-0"
             style={{ perspective: "1000px" }}
           >
             {/* Soft glow behind avatar */}
@@ -142,7 +142,7 @@ export default function Hero() {
               }}
               style={{ transformStyle: "preserve-3d" }}
             >
-              {/* Avatar Image - No border, clean edges */}
+              {/* Avatar Image - Blended edges */}
               <div className="relative w-full h-full">
                 <Image
                   src="/hero-avatar.png"
@@ -153,6 +153,15 @@ export default function Hero() {
                   priority
                   style={{
                     filter: "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.3))",
+                    maskImage: "radial-gradient(ellipse 85% 90% at 50% 50%, black 60%, transparent 100%)",
+                    WebkitMaskImage: "radial-gradient(ellipse 85% 90% at 50% 50%, black 60%, transparent 100%)",
+                  }}
+                />
+                {/* Additional edge fade overlay for smoother blending */}
+                <div 
+                  className="absolute inset-0 rounded-[2rem] pointer-events-none"
+                  style={{
+                    background: "radial-gradient(ellipse 85% 90% at 50% 50%, transparent 60%, var(--background) 100%)",
                   }}
                 />
               </div>
