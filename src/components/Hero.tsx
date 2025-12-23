@@ -110,7 +110,7 @@ export default function Hero() {
               rotateY: 0,
             }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative w-72 h-[28rem] md:w-[24rem] md:h-[38rem] flex-shrink-0"
+            className="relative w-72 h-[24rem] md:w-[24rem] md:h-[32rem] flex-shrink-0"
             style={{ perspective: "1000px" }}
           >
             {/* Soft glow behind avatar */}
@@ -148,7 +148,7 @@ export default function Hero() {
                   src="/hero-avatar.jpg"
                   alt="Developer Avatar"
                   fill
-                  className="object-cover object-top rounded-[2rem] shadow-2xl"
+                  className="object-cover object-[50%_25%] rounded-[2rem] shadow-2xl"
                   sizes="(max-width: 768px) 288px, 384px"
                   priority
                   style={{
@@ -158,7 +158,7 @@ export default function Hero() {
                   }}
                 />
                 {/* Additional edge fade overlay for smoother blending */}
-                <div 
+                <div
                   className="absolute inset-0 rounded-[2rem] pointer-events-none"
                   style={{
                     background: "radial-gradient(ellipse 85% 90% at 50% 50%, transparent 60%, var(--background) 100%)",
