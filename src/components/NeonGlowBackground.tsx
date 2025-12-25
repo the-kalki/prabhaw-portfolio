@@ -20,7 +20,7 @@ export default function NeonGlowBackground() {
                     left: "5%",
                     background: "radial-gradient(circle, rgba(34, 211, 238, 0.5) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 70%)",
                     filter: "blur(80px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                 }}
             />
             <div
@@ -30,7 +30,7 @@ export default function NeonGlowBackground() {
                     left: "45%",
                     background: "radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, rgba(139, 92, 246, 0.2) 50%, transparent 70%)",
                     filter: "blur(70px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-2s",
                 }}
             />
@@ -41,7 +41,7 @@ export default function NeonGlowBackground() {
                     right: "5%",
                     background: "radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 60%)",
                     filter: "blur(60px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-4s",
                 }}
             />
@@ -54,7 +54,7 @@ export default function NeonGlowBackground() {
                     left: "-5%",
                     background: "radial-gradient(circle, rgba(52, 211, 153, 0.5) 0%, rgba(16, 185, 129, 0.2) 50%, transparent 70%)",
                     filter: "blur(90px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-1s",
                 }}
             />
@@ -65,7 +65,7 @@ export default function NeonGlowBackground() {
                     left: "35%",
                     background: "radial-gradient(circle, rgba(96, 165, 250, 0.3) 0%, transparent 60%)",
                     filter: "blur(70px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-5s",
                 }}
             />
@@ -76,7 +76,7 @@ export default function NeonGlowBackground() {
                     right: "-8%",
                     background: "radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, rgba(139, 92, 246, 0.15) 50%, transparent 70%)",
                     filter: "blur(80px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-3s",
                 }}
             />
@@ -89,7 +89,7 @@ export default function NeonGlowBackground() {
                     left: "10%",
                     background: "radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, rgba(236, 72, 153, 0.2) 50%, transparent 70%)",
                     filter: "blur(100px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-2s",
                 }}
             />
@@ -101,7 +101,7 @@ export default function NeonGlowBackground() {
                     transform: "translateX(-50%)",
                     background: "radial-gradient(circle, rgba(34, 211, 238, 0.4) 0%, transparent 60%)",
                     filter: "blur(80px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-6s",
                 }}
             />
@@ -112,7 +112,7 @@ export default function NeonGlowBackground() {
                     right: "-5%",
                     background: "radial-gradient(circle, rgba(52, 211, 153, 0.4) 0%, rgba(16, 185, 129, 0.15) 50%, transparent 70%)",
                     filter: "blur(90px)",
-                    willChange: "opacity",
+                    willChange: "opacity, transform",
                     animationDelay: "-4s",
                 }}
             />

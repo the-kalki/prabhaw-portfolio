@@ -7,23 +7,15 @@ import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import NeonGlowBackground from "@/components/NeonGlowBackground";
 import { useStore } from "@/lib/store";
+import { useHasMounted } from "@/lib/hooks";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   const { activeSection, isLocked } = useStore();
-  const [isMounted, setIsMounted] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const isMounted = useHasMounted();
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  // Wait for hydration to complete
-  useEffect(() => {
-    setIsMounted(true);
-    // Small delay to ensure Zustand store is fully hydrated from localStorage
-    const timer = setTimeout(() => setIsHydrated(true), 50);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Handle body overflow when locked
   useEffect(() => {
@@ -34,10 +26,10 @@ export default function Home() {
     }
   }, [isLocked, isMounted]);
 
-  const shouldShowLocked = isMounted && isHydrated && isLocked;
+  const shouldShowLocked = isMounted && isLocked;
 
-  // Don't render section content until hydrated to prevent flash
-  if (!isHydrated) {
+  // Don't render section content until mounted to prevent hydration mismatch
+  if (!isMounted) {
     return (
       <main className="relative min-h-screen transition-colors duration-500">
         <NeonGlowBackground />
