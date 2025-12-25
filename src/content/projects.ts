@@ -28,23 +28,6 @@ export const projects = {
       },
     },
     {
-      title: "Testify Pro — Test Automation Framework",
-      domain: "QA / Automation Testing",
-      description:
-        "Robust automation testing framework integrated into CI pipelines for continuous quality assurance.",
-      image: "/projects/testifypro.png",
-      highlights: [
-        "Selenium WebDriver with Java & TestNG",
-        "Jenkins integration for automated test execution",
-        "Cross-browser testing",
-        "Defect tracking with Jira",
-      ],
-      tech: ["Java", "Selenium", "TestNG", "Jenkins", "Jira"],
-      links: {
-        github: "#",
-      },
-    },
-    {
       title: "InsureMe — Insurance Microservices Platform",
       domain: "Insurance / Microservices",
       description:
@@ -91,8 +74,54 @@ export const projects = {
         "Node.js", // Assuming Node for MongoDB connectivity
       ],
       links: {
-        github: "#", // Add your repo link here
+        github: "https://github.com/Anushka14Rai/SProject", // Add your repo link here
       },
     },
+    /*
+    {
+      title: "Testify Pro — Test Automation Framework",
+      domain: "QA / Automation Testing",
+      description:
+        "Robust automation testing framework integrated into CI pipelines for continuous quality assurance.",
+      image: "/projects/testifypro.png",
+      highlights: [
+        "Selenium WebDriver with Java & TestNG",
+        "Jenkins integration for automated test execution",
+        "Cross-browser testing",
+        "Defect tracking with Jira",
+      ],
+      tech: ["Java", "Selenium", "TestNG", "Jenkins", "Jira"],
+      links: {
+        github: "#",
+      },
+    },
+    */
+    {
+      title: "Modern Dev Portfolio",
+      domain: "Frontend Engineering / Portfolio",
+      description:
+        "A high-performance, responsive personal portfolio built with the latest React and Next.js features, focusing on fluid UX and type-safe architecture.",
+      image: "/projects/portfolio.png",
+      highlights: [
+        "Architected with Next.js 16 App Router & React 19 for cutting-edge performance",
+        "Crafted immersive UI with Tailwind CSS and Framer Motion animations",
+        "Implemented smooth-scroll experience using Lenis and Zustand for state management",
+        "SEO optimized with dynamic Open Graph tags and high performance Lighthouse scores",
+        "Strictly typed codebase using TypeScript for long-term maintainability",
+      ],
+      tech: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Zustand",
+        "Lenis",
+      ],
+      links: {
+        github: "https://github.com/the-kalki/prabhaw-portfolio.git",
+        live: "https://prabhaw.vercel.app/",
+      },
+},
   ],
 };

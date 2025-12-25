@@ -14,7 +14,7 @@ type Props = {
     tech: string[];
     links: {
       github?: string;
-      external?: string;
+      live?: string;
     };
   };
 };
@@ -109,9 +109,9 @@ export default function ProjectCard({ project }: Props) {
                 <Github size={20} />
               </a>
             )}
-            {project.links.external && (
+            {project.links.live && (
               <a
-                href={project.links.external}
+                href={project.links.live}
                 target="_blank"
                 className="p-3 rounded-full bg-[var(--foreground)]/5 opacity-40 hover:opacity-100 hover:bg-[var(--foreground)]/10 transition-all active:scale-90"
               >
