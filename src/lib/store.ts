@@ -29,7 +29,6 @@ export const useStore = create<AppState>()(
       partialize: (state) => ({
         theme: state.theme,
         activeSection: state.activeSection,
-        isLocked: state.isLocked
       }),
     }
   )
