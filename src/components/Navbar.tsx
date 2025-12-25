@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { Sun, Moon } from "lucide-react";
@@ -103,7 +104,13 @@ export default function Navbar() {
           className="flex items-center gap-2 hover:opacity-70 transition-opacity"
         >
           <div className="relative h-8 w-8 overflow-hidden rounded-full border border-[var(--glass-border)]">
-            <img src="/logo.jpg" alt="Logo" className="h-full w-full object-cover" />
+            <Image
+              src="/logo.jpg"
+              alt="Logo"
+              fill
+              className="object-cover"
+              sizes="32px"
+            />
           </div>
           <span className="text-xl font-bold tracking-tighter">kalki</span>
         </button>

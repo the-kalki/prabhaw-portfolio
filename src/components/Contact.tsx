@@ -48,7 +48,7 @@ export default function Contact() {
               </a>
 
               <div className="flex gap-4">
-                {contact.socials.map((s, idx) => (
+                {contact.socials.map((s) => (
                   <a
                     key={s.label}
                     href={s.href}

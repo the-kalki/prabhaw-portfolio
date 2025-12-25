@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { useRef, MouseEvent } from "react";
 
 type Props = {
@@ -133,10 +134,12 @@ export default function ProjectCard({ project }: Props) {
             style={{ transform: "translateZ(60px)" }}
             className="relative mb-8 overflow-hidden rounded-2xl border border-[var(--glass-border)] aspect-video"
           >
-            <img
+            <Image
               src={project.image}
               alt={project.title}
-              className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, 500px"
             />
           </div>
         )}
